@@ -19,7 +19,7 @@ signal.signal(signal.SIGALRM, timeout_handler)
 
 rights = 0
 
-numbers_count = 3
+numbers_count = int(input("How many numbers would you like to recall? "))
 
 seconds = 7
 
