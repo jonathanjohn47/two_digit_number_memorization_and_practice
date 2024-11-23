@@ -19,11 +19,15 @@ signal.signal(signal.SIGALRM, timeout_handler)
 
 rights = 0
 numbers_count = int(input("How many numbers would you like to recall? "))
+is_random = input("Would you like the numbers to be random? (y/n) ")
 initial_milliseconds = 5000
 remaining_milliseconds = initial_milliseconds
 
 for i in range(numbers_count):
-    random_num = i  # Random().randint(0, 99)
+    if is_random == "y":
+        random_num = Random().randint(0, 20)
+    else:
+        random_num = i
     print("Time Remaining: " + str(remaining_milliseconds / 1000) + " seconds")
     print("Enter the mnemonic for the number " + str(random_num).zfill(2) + ": ")
 
