@@ -18,21 +18,24 @@ def timeout_handler(signum, frame):
 signal.signal(signal.SIGALRM, timeout_handler)
 
 rights = 0
-
 numbers_count = int(input("How many numbers would you like to recall? "))
-
-seconds = 7
+initial_milliseconds = 5000
+remaining_milliseconds = initial_milliseconds
 
 for i in range(numbers_count):
-    random_num = Random().randint(0, 99)
+    random_num = i  # Random().randint(0, 99)
+    print("Time Remaining: " + str(remaining_milliseconds / 1000) + " seconds")
     print("Enter the mnemonic for the number " + str(random_num).zfill(2) + ": ")
 
-    # Set the alarm for 5 seconds
-    signal.alarm(seconds)
+    start_time = time.time() * 1000
+    signal.setitimer(signal.ITIMER_REAL, remaining_milliseconds / 1000)
 
     mnemonic = input()
-    # Disable the alarm
-    signal.alarm(0)
+    signal.setitimer(signal.ITIMER_REAL, 0)
+    end_time = time.time() * 1000
+
+    elapsed_time = end_time - start_time
+    remaining_milliseconds = max(0, remaining_milliseconds - elapsed_time) + initial_milliseconds
 
     if mnemonic == mnemonics_dict[str(random_num).zfill(2)]:
         print("Correct!")
