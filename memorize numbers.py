@@ -25,7 +25,7 @@ remaining_milliseconds = initial_milliseconds
 
 for i in range(numbers_count):
     if is_random == "y":
-        random_num = Random().randint(0, 20)
+        random_num = Random().randint(0, numbers_count - 1)
     else:
         random_num = i
     print("Time Remaining: " + str(remaining_milliseconds / 1000) + " seconds")
