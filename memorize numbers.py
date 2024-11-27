@@ -20,13 +20,15 @@ def timeout_handler(signum, frame):
 signal.signal(signal.SIGALRM, timeout_handler)
 
 rights = 0
+first_number = int(input("Enter First Number from where you want to start: "))
 numbers_count = int(input("How many numbers would you like to recall? "))
 is_random = input("Would you like the numbers to be random? (y/n) ")
 
 timing = []
-for i in range(numbers_count):
+
+for i in range(first_number, first_number + numbers_count):
     if is_random == "y":
-        random_num = Random().randint(0, numbers_count - 1)
+        random_num = Random().randint(first_number, first_number + numbers_count - 1)
     else:
         random_num = i
     print("Time Remaining: 5 seconds")
@@ -49,4 +51,4 @@ for i in range(numbers_count):
 
 print("You got " + str(rights) + " out of " + str(numbers_count) + " right.")
 average_time = numpy.average(timing)
-print("Average time taken per number: " + str(average_time/1000) + " seconds.")
+print("Average time taken per number: " + str(average_time / 1000) + " seconds.")
