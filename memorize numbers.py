@@ -26,9 +26,17 @@ is_random = input("Would you like the numbers to be random? (y/n) ")
 
 timing = []
 
+previous_number = 0
+
 for i in range(first_number, first_number + numbers_count):
     if is_random == "y":
-        random_num = Random().randint(first_number, first_number + numbers_count - 1)
+        new_random_num = Random().randint(first_number, first_number + numbers_count - 1)
+        if new_random_num == previous_number:
+            i -= 1
+            continue
+        else:
+            random_num = new_random_num
+            previous_number = new_random_num
     else:
         random_num = i
     print("Time Remaining: 5 seconds")
