@@ -26,8 +26,6 @@ is_random = input("Would you like the numbers to be random? (y/n) ")
 
 timing = []
 
-previous_number = 0
-
 numbers_generated = []
 
 
