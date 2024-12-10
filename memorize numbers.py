@@ -30,18 +30,21 @@ previous_number = 0
 
 numbers_generated = []
 
+
+def generateRandomNumber():
+    new_random_num = Random().randint(first_number, first_number + numbers_count - 1)
+    if new_random_num not in numbers_generated:
+        numbers_generated.append(new_random_num)
+        return new_random_num
+    else:
+        return generateRandomNumber()
+
+
 for i in range(first_number, first_number + numbers_count):
     if is_random == "y":
-        new_random_num = Random().randint(first_number, first_number + numbers_count - 1)
-        if new_random_num == previous_number:
-            i -= 1
-            continue
-        elif new_random_num in numbers_generated:
-            i -= 1
-            continue
-        else:
-            random_num = new_random_num
-            previous_number = new_random_num
+
+        random_num = generateRandomNumber()
+
     else:
         random_num = i
     print("Time Remaining: 5 seconds")
