@@ -49,7 +49,7 @@ for i in range(first_number, first_number + numbers_count):
     print("Enter the mnemonic for the number " + str(random_num).zfill(2) + ": ")
 
     start_time = time.time() * 1000
-    signal.setitimer(signal.ITIMER_REAL, 5)
+    signal.setitimer(signal.ITIMER_REAL, 7)
 
     mnemonic = input()
     signal.setitimer(signal.ITIMER_REAL, 0)
