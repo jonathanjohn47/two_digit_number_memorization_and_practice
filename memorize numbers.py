@@ -28,10 +28,15 @@ timing = []
 
 previous_number = 0
 
+numbers_generated = []
+
 for i in range(first_number, first_number + numbers_count):
     if is_random == "y":
         new_random_num = Random().randint(first_number, first_number + numbers_count - 1)
         if new_random_num == previous_number:
+            i -= 1
+            continue
+        elif new_random_num in numbers_generated:
             i -= 1
             continue
         else:
