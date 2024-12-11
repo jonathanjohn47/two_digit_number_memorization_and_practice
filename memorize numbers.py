@@ -26,16 +26,30 @@ is_random = input("Would you like the numbers to be random? (y/n) ")
 
 timing = []
 
+numbers_generated = []
+
+
+def generateRandomNumber():
+    new_random_num = Random().randint(first_number, first_number + numbers_count - 1)
+    if new_random_num not in numbers_generated:
+        numbers_generated.append(new_random_num)
+        return new_random_num
+    else:
+        return generateRandomNumber()
+
+
 for i in range(first_number, first_number + numbers_count):
     if is_random == "y":
-        random_num = Random().randint(first_number, first_number + numbers_count - 1)
+
+        random_num = generateRandomNumber()
+
     else:
         random_num = i
     print("Time Remaining: 5 seconds")
     print("Enter the mnemonic for the number " + str(random_num).zfill(2) + ": ")
 
     start_time = time.time() * 1000
-    signal.setitimer(signal.ITIMER_REAL, 5)
+    signal.setitimer(signal.ITIMER_REAL, 7)
 
     mnemonic = input()
     signal.setitimer(signal.ITIMER_REAL, 0)
