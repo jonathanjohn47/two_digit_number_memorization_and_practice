@@ -51,7 +51,7 @@ for i in range(first_number, first_number + numbers_count):
     start_time = time.time() * 1000
     signal.setitimer(signal.ITIMER_REAL, 7)
 
-    mnemonic = input()
+    mnemonic = input().strip()
     signal.setitimer(signal.ITIMER_REAL, 0)
     end_time = time.time() * 1000
     timing.append(end_time - start_time)
