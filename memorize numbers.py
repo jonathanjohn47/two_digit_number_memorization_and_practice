@@ -28,6 +28,8 @@ timing = []
 
 numbers_generated = []
 
+time_remaining = 7
+
 
 def generateRandomNumber():
     new_random_num = Random().randint(first_number, first_number + numbers_count - 1)
@@ -45,11 +47,11 @@ for i in range(first_number, first_number + numbers_count):
 
     else:
         random_num = i
-    print("Time Remaining: 5 seconds")
+    print(f"Time Remaining: {time_remaining} seconds")
     print("Enter the mnemonic for the number " + str(random_num).zfill(2) + ": ")
 
     start_time = time.time() * 1000
-    signal.setitimer(signal.ITIMER_REAL, 7)
+    signal.setitimer(signal.ITIMER_REAL, time_remaining)
 
     mnemonic = input().strip()
     signal.setitimer(signal.ITIMER_REAL, 0)
@@ -66,3 +68,7 @@ for i in range(first_number, first_number + numbers_count):
 print("You got " + str(rights) + " out of " + str(numbers_count) + " right.")
 average_time = numpy.average(timing)
 print("Average time taken per number: " + str(average_time / 1000) + " seconds.")
+remembrance_score = (rights / numbers_count) * ((time_remaining * 1000 - average_time) / 1000)
+perfect_remembrance_score = (numbers_count / numbers_count) * ((time_remaining * 1000 - 0) / 1000)
+improvement_score = remembrance_score / perfect_remembrance_score * 100
+print("Improvement Score: {:.2f}%".format(improvement_score))
